@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.20)
-project(GeminiWatermarkTool VERSION 0.1.2 LANGUAGES CXX)
+project(GeminiWatermarkTool VERSION 0.1.3 LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -153,6 +153,7 @@ set(HEADERS
     src/watermark_engine.hpp
     src/blend_modes.hpp
     src/ascii_logo.hpp
+    src/path_formatter.hpp
 )
 
 add_executable(${PROJECT_NAME}

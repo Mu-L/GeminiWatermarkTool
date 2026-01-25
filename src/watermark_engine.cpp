@@ -13,6 +13,7 @@
 
 #include "watermark_engine.hpp"
 #include "blend_modes.hpp"
+#include "path_formatter.hpp"
 
 #include <opencv2/imgcodecs.hpp>
 #include <opencv2/imgproc.hpp>
@@ -219,12 +220,12 @@ bool process_image(
         // Read image
         cv::Mat image = cv::imread(input_path.string(), cv::IMREAD_COLOR);
         if (image.empty()) {
-            spdlog::error("Failed to load image: {}", input_path.string());
+            spdlog::error("Failed to load image: {}", input_path);
             return false;
         }
 
         spdlog::info("Processing: {} ({}x{})",
-                     input_path.filename().string(),
+                     input_path.filename(),
                      image.cols, image.rows);
 
         // Process with force_size parameter
@@ -259,15 +260,15 @@ bool process_image(
         // Write output
         bool success = cv::imwrite(output_path.string(), image, params);
         if (!success) {
-            spdlog::error("Failed to write image: {}", output_path.string());
+            spdlog::error("Failed to write image: {}", output_path);
             return false;
         }
 
-        spdlog::info("Saved: {}", output_path.filename().string());
+        spdlog::info("Saved: {}", output_path.filename());
         return true;
 
     } catch (const std::exception& e) {
-        spdlog::error("Error processing {}: {}", input_path.string(), e.what());
+        spdlog::error("Error processing {}: {}", input_path, e.what());
         return false;
     }
 }
