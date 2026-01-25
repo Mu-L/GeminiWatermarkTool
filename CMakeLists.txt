@@ -153,6 +153,7 @@ set(HEADERS
     src/watermark_engine.hpp
     src/blend_modes.hpp
     src/ascii_logo.hpp
+    src/path_formatter.hpp
 )
 
 add_executable(${PROJECT_NAME}

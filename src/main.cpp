@@ -29,6 +29,7 @@
 #include "watermark_engine.hpp"
 #include "ascii_logo.hpp"
 #include "embedded_assets.hpp"
+#include "path_formatter.hpp"
 
 #include <CLI/CLI.hpp>
 #include <spdlog/spdlog.h>
@@ -171,7 +172,7 @@ int run_simple_mode(int argc, char** argv) {
                 continue;
             }
 
-            spdlog::info("Processing: {}", input.filename().string());
+            spdlog::info("Processing: {}", input.filename());
             process_single(input, input, true, engine, std::nullopt, result);
         }
 
@@ -280,7 +281,7 @@ int main(int argc, char** argv) {
                 fs::create_directories(output);
             }
 
-            spdlog::info("Batch processing directory: {}", input.string());
+            spdlog::info("Batch processing directory: {}", input);
 
             for (const auto& entry : fs::directory_iterator(input)) {
                 if (!entry.is_regular_file()) continue;
